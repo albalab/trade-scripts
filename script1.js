@@ -1,1 +1,1 @@
-console.log(4);// ваш скрипт Tampermonkey
+console.log(5);// ваш скрипт Tampermonkey
