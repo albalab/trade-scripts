@@ -3,7 +3,7 @@
 
     const iframe = document.createElement('iframe');
     iframe.setAttribute('ref', 'chartIframe');
-    iframe.src = 'https://127.0.0.1:8080/#/candles-chart-iframe';
+    iframe.src = 'https://trade-6rl.pages.dev/';
 
     // Устанавливаем стили для фиксированного позиционирования
     iframe.style.position = 'fixed'; // Фиксированное позиционирование
