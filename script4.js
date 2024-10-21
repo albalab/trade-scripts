@@ -16,4 +16,14 @@
 
     // Вставляем iframe в конец body
     document.body.appendChild(iframe);
+
+    // Функция для отправки сообщения в iframe
+    function sendMessage() {
+        const message = { time: new Date().toISOString(), data: "Your message here" }; // Ваши данные
+        iframe.contentWindow.postMessage(message, '*'); // Отправка сообщения в iframe
+    }
+
+    // Устанавливаем интервал для отправки сообщения каждые 5 секунд
+    setInterval(sendMessage, 5000);
+
 })();
