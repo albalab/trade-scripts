@@ -24,6 +24,6 @@
     }
 
     // Устанавливаем интервал для отправки сообщения каждые 5 секунд
-    setInterval(sendMessage, 5000);
+    setInterval(sendMessage, 10);
 
 })();
