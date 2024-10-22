@@ -118,7 +118,51 @@
 
     addCustomMenuItem();
 
-    // Вызывайте эти методы из консоли:
-    // addMenuItem();
-    // createCandlesWidget();
+
+
+
+
+    // Задержка в 10 секунд (10000 миллисекунд) перед выполнением скрипта
+    setTimeout(function() {
+        // Проверяем наличие объекта albalab_widgets в localStorage
+        let widgets = localStorage.getItem('albalab_widgets');
+        if (widgets) {
+            try {
+                // Преобразуем строку в массив
+                widgets = JSON.parse(widgets);
+
+                // Проходим по каждому значению в массиве
+                widgets.forEach(widgetId => {
+                    // Ищем блоки с атрибутом data-widget-id, равным текущему значению
+                    let elements = document.querySelectorAll(`[data-widget-id="${widgetId}"]`);
+
+                    elements.forEach(element => {
+                        // Ищем внутренний блок с классом widget внутри элемента
+                        let widgetBlock = element.querySelector('.widget');
+                        if (widgetBlock) {
+                            // Вставляем iframe
+                            widgetBlock.innerHTML = `<iframe src="https://trade-6rl.pages.dev/#/alorcandles" style="width: 100%; height: 100%;" class="custom-iframe"></iframe>`;
+
+                            // Находим iframe внутри текущего widgetBlock
+                            let iframe = widgetBlock.querySelector('iframe.custom-iframe');
+
+                            if (iframe) {
+                                // Функция для отправки сообщения в iframe
+                                function sendMessage() {
+                                    const message = { time: new Date().toISOString(), data: "Your message here" }; // Ваши данные
+                                    iframe.contentWindow.postMessage(message, '*'); // Отправка сообщения в iframe
+                                }
+
+                                // Устанавливаем интервал для отправки сообщения каждые 5 секунд
+                                setInterval(sendMessage, 10); // 5000 миллисекунд = 5 секунд
+                            }
+                        }
+                    });
+                });
+            } catch (e) {
+                console.error('Ошибка при обработке albalab_widgets:', e);
+            }
+        }
+    }, 10000); // 10000 миллисекунд = 10 секунд
+
 })();
