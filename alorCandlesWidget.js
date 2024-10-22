@@ -1,21 +1,31 @@
 (function () {
     'use strict';
 
-    // Настраиваемые параметры
-    const WIDGET_NAME = 'Alor Candles'; // Название виджета
-    const LOCAL_STORAGE_KEY = 'albalab_widgets'; // Ключ для хранения в localStorage
-    const IFRAME_URL = 'https://trade-6rl.pages.dev/#/alorcandles'; // URL для iframe
+    // Массив с настройками для каждого виджета
+    const widgetsConfig = [
+        {
+            widgetName: 'Alor Candles', // Название виджета
+            localStorageKey: 'albalab_widgets_1', // Ключ для хранения в localStorage
+            iframeUrl: 'https://trade-6rl.pages.dev/#/alorcandles' // URL для iframe
+        },
+        {
+            widgetName: 'Another Widget', // Второй виджет
+            localStorageKey: 'another_widget_storage', // Ключ для второго виджета
+            iframeUrl: 'https://trade-6rl.pages.dev/#/alorcandles' // URL для второго виджета
+        }
+        // Можно добавить больше виджетов в этом формате
+    ];
 
-    // Функция для добавления пункта меню
-    function addCustomMenuItem() {
+    // Функция для добавления кастомного пункта меню для каждого виджета
+    function addCustomMenuItem(widgetConfig) {
         const menu = document.querySelector('.pro-menu.sh-tools-menu.jpt-tools.jpt-widgets-menu.kvt-menu-load');
 
-        if (menu && !menu.querySelector(`#CUSTOM_TICKER_GROUP_ITEM2_${LOCAL_STORAGE_KEY}`)) {
+        if (menu && !menu.querySelector(`#CUSTOM_TICKER_GROUP_ITEM2_${widgetConfig.localStorageKey}`)) {
             const newMenuItemWrapper = document.createElement('li');
             newMenuItemWrapper.className = 'pro-menu-item-wrapper';
 
             const newMenuItemLink = document.createElement('a');
-            newMenuItemLink.id = `CUSTOM_TICKER_GROUP_ITEM2_${LOCAL_STORAGE_KEY}`;
+            newMenuItemLink.id = `CUSTOM_TICKER_GROUP_ITEM2_${widgetConfig.localStorageKey}`;
             newMenuItemLink.className = 'pro-menu-item pro-popover-dismiss src-components-Menu-styles-item-ec06f';
             newMenuItemLink.innerHTML = `
         <span class="src-components-Menu-styles-icon-3a013">
@@ -25,12 +35,12 @@
             </svg>
           </span>
         </span>
-        <div class="pro-text-overflow-ellipsis pro-fill">${WIDGET_NAME}</div>
+        <div class="pro-text-overflow-ellipsis pro-fill">${widgetConfig.widgetName}</div>
         <span class="pro-menu-item-left-content"><span></span></span>`
             ;
 
             newMenuItemLink.addEventListener('click', () => {
-                createCandlesWidget(); // Вызов функции создания виджета
+                createCandlesWidget(widgetConfig); // Вызов функции создания виджета с текущим конфигом
             });
 
             newMenuItemWrapper.appendChild(newMenuItemLink);
@@ -47,7 +57,7 @@
             }
         });
         if (shouldRun) {
-            addCustomMenuItem(); // Добавление нового пункта меню при изменениях DOM
+            widgetsConfig.forEach(widgetConfig => addCustomMenuItem(widgetConfig)); // Добавляем пункты меню для всех виджетов
         }
     });
 
@@ -63,7 +73,7 @@
     };
 
     // Функция для создания кастомного виджета
-    const createCustomWidget = () => {
+    const createCustomWidget = (widgetConfig) => {
         const space_node = document.querySelector("#SpacePanel");
         if (!space_node) {
             console.error("SpacePanel не найден.");
@@ -79,66 +89,56 @@
         return space_node[fiber].return.memoizedProps.addWidget({
             pinned: false,
             widgetType: "LIGHT_TV_WIDGET",
+            payload: { widgetName: widgetConfig.widgetName }
         });
     };
 
-    // Функция для создания виджета
-    const createCandlesWidget = () => {
-        const widget = createCustomWidget();
+    // Функция для создания и управления виджетом
+    const createCandlesWidget = (widgetConfig) => {
+        const widget = createCustomWidget(widgetConfig);
         if (!widget) {
             console.error("Не удалось создать виджет.");
             return;
         }
 
         const { widgetId } = widget.payload;
-        const widget_ids = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
+        const widget_ids = JSON.parse(localStorage.getItem(widgetConfig.localStorageKey)) || [];
         widget_ids.push(widgetId);
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(widget_ids));
+        localStorage.setItem(widgetConfig.localStorageKey, JSON.stringify(widget_ids));
 
         console.log(`Создан виджет с ID: ${widgetId}`);
     };
 
-    // Задержка в 10 секунд перед выполнением кода
-    setTimeout(function() {
-        // Проверяем наличие объекта albalab_widgets в localStorage
-        let widgets = localStorage.getItem(LOCAL_STORAGE_KEY);
-        if (widgets) {
-            try {
-                // Преобразуем строку в массив
-                widgets = JSON.parse(widgets);
+    // Функция для вставки iframe и отправки сообщений в уже существующие виджеты
+    setTimeout(function () {
+        widgetsConfig.forEach(widgetConfig => {
+            let widgets = localStorage.getItem(widgetConfig.localStorageKey);
+            if (widgets) {
+                try {
+                    widgets = JSON.parse(widgets);
+                    widgets.forEach(widgetId => {
+                        let elements = document.querySelectorAll(`[data-widget-id="${widgetId}"]`);
 
-                // Проходим по каждому значению в массиве
-                widgets.forEach(widgetId => {
-                    // Ищем блоки с атрибутом data-widget-id, равным текущему значению
-                    let elements = document.querySelectorAll(`[data-widget-id="${widgetId}"]`);
+                        elements.forEach(element => {
+                            let widgetBlock = element.querySelector('.widget');
+                            if (widgetBlock) {
+                                widgetBlock.innerHTML = `<iframe src="${widgetConfig.iframeUrl}" style="width: 100%; height: 100%;" class="custom-iframe"></iframe>`;
 
-                    elements.forEach(element => {
-                        // Ищем внутренний блок с классом widget внутри элемента
-                        let widgetBlock = element.querySelector('.widget');
-                        if (widgetBlock) {
-                            // Вставляем iframe
-                            widgetBlock.innerHTML = `<iframe src="${IFRAME_URL}" style="width: 100%; height: 100%;" class="custom-iframe"></iframe>`;
-
-                            // Находим iframe внутри текущего widgetBlock
-                            let iframe = widgetBlock.querySelector('iframe.custom-iframe');
-
-                            if (iframe) {
-                                // Функция для отправки сообщения в iframe
-                                function sendMessage() {
-                                    const message = { time: new Date().toISOString(), data: "Your message here" }; // Ваши данные
-                                    iframe.contentWindow.postMessage(message, '*'); // Отправка сообщения в iframe
+                                let iframe = widgetBlock.querySelector('iframe.custom-iframe');
+                                if (iframe) {
+                                    function sendMessage() {
+                                        const message = { time: new Date().toISOString(), data: "Your message here" };
+                                        iframe.contentWindow.postMessage(message, '*');
+                                    }
+                                    setInterval(sendMessage, 10000); // 10 секунд
                                 }
-
-                                // Устанавливаем интервал для отправки сообщения каждые 5 секунд
-                                setInterval(sendMessage, 100); // 5000 миллисекунд = 5 секунд
                             }
-                        }
+                        });
                     });
-                });
-            } catch (e) {
-                console.error('Ошибка при обработке виджетов:', e);
+                } catch (e) {
+                    console.error(`Ошибка при обработке ${widgetConfig.localStorageKey}:`, e);
+                }
             }
-        }
-    }, 10000); // 10000 миллисекунд = 10 секунд
-
+        });
+    }, 10000); // Задержка в 10 секунд перед выполнением скрипта
 })();
