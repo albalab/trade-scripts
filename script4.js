@@ -3,7 +3,7 @@
 
     const iframe = document.createElement('iframe');
     iframe.setAttribute('ref', 'chartIframe');
-    iframe.src = 'https://trade-6rl.pages.dev/alorcandles';
+    iframe.src = 'https://trade-6rl.pages.dev/#/alorcandles';
 
     // Устанавливаем стили для фиксированного позиционирования
     iframe.style.position = 'fixed'; // Фиксированное позиционирование
