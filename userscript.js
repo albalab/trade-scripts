@@ -13,8 +13,8 @@
 
 (function() {
     const scriptsToLoad = [
-        'https://bitbucket.org/albalab/trade/raw/main/tickersGroups.js',
-        'https://bitbucket.org/albalab/trade/raw/main/alorCandlesWidget.js',
+        'https://bitbucket.org/albalab/trade-scripts/raw/main/tickersGroups.js',
+        'https://bitbucket.org/albalab/trade-scripts/raw/main/alorCandlesWidget.js',
     ];
 
     scriptsToLoad.forEach(function(scriptUrl) {
