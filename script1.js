@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    const SCANER_ICON = '<svg>...</svg>'; // Замените на код вашей иконки
+    const SCANER_ICON = 'O'; // Замените на код вашей иконки
     const CUSTOM_WIDGET_NAME = "Custom Widget"; // Название вашего виджета
 
 
@@ -23,12 +23,12 @@
             </svg>
           </span>
         </span>
-        <div class="pro-text-overflow-ellipsis pro-fill">Мой график</div>
+        <div class="pro-text-overflow-ellipsis pro-fill">Мой виджет</div>
         <span class="pro-menu-item-left-content"><span></span></span>`
             ;
 
             newMenuItemLink.addEventListener('click', () => {
-                createLiqWidget(); // Вызов функции создания виджета
+                createCandlesWidget(); // Вызов функции создания виджета
             });
 
             newMenuItemWrapper.appendChild(newMenuItemLink);
@@ -72,7 +72,7 @@
         });
     };
 
-    const createLiqWidget = () => {
+    const createCandlesWidget = () => {
         const widget = createCustomWidget();
         if (!widget) {
             console.error("Не удалось создать виджет.");
@@ -80,9 +80,9 @@
         }
 
         const { widgetId } = widget.payload;
-        const liq_widget_ids = JSON.parse(localStorage.getItem("liq_ids")) || [];
-        liq_widget_ids.push(widgetId);
-        localStorage.setItem("liq_ids", JSON.stringify(liq_widget_ids));
+        const widget_ids = JSON.parse(localStorage.getItem("albalab_widgets")) || [];
+        widget_ids.push(widgetId);
+        localStorage.setItem("albalab_widgets", JSON.stringify(widget_ids));
 
         console.log(`Создан виджет с ID: ${widgetId}`);
     };
@@ -104,7 +104,7 @@
         const newItem = modelItem.parentNode.cloneNode(true);
         newItem.querySelector(".pro-icon").innerHTML = SCANER_ICON;
         newItem.querySelector('[class*="text"]').textContent = CUSTOM_WIDGET_NAME;
-        newItem.onclick = createLiqWidget;
+        newItem.onclick = createCandlesWidget;
 
         // Добавляем новый элемент меню
         const firstDivider = proMenu.querySelector('[class*="divider"]');
@@ -120,5 +120,5 @@
 
     // Вызывайте эти методы из консоли:
     // addMenuItem();
-    // createLiqWidget();
+    // createCandlesWidget();
 })();
