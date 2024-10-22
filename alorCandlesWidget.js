@@ -23,7 +23,7 @@
             </svg>
           </span>
         </span>
-        <div class="pro-text-overflow-ellipsis pro-fill">Шаблон виджета</div>
+        <div class="pro-text-overflow-ellipsis pro-fill">Alor Candles</div>
         <span class="pro-menu-item-left-content"><span></span></span>`
             ;
 
