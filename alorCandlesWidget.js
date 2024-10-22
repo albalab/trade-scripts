@@ -11,7 +11,7 @@
         {
             widgetName: 'Another Widget', // Второй виджет
             localStorageKey: 'another_widget_storage', // Ключ для второго виджета
-            iframeUrl: 'https://trade-6rl.pages.dev/#/alorcandles' // URL для второго виджета
+            iframeUrl: 'https://trade-6rl.pages.dev/#/test' // URL для второго виджета
         }
         // Можно добавить больше виджетов в этом формате
     ];
