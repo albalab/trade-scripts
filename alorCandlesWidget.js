@@ -1,6 +1,7 @@
 (function () {
     'use strict';
 
+    // Функция для добавления пункта меню
     function addCustomMenuItem() {
         const menu = document.querySelector('.pro-menu.sh-tools-menu.jpt-tools.jpt-widgets-menu.kvt-menu-load');
 
@@ -32,6 +33,7 @@
         }
     }
 
+    // Мутационный наблюдатель для отслеживания изменений в DOM
     const observer = new MutationObserver((mutations) => {
         let shouldRun = false;
         mutations.forEach((mutation) => {
@@ -46,6 +48,7 @@
 
     observer.observe(document.body, { childList: true, subtree: true });
 
+    // Функция для получения React Fiber ключа
     const getReactFiberKeyString = (node) => {
         return Object.keys(node).find(
             (key) =>
@@ -54,6 +57,7 @@
         );
     };
 
+    // Функция для создания кастомного виджета
     const createCustomWidget = () => {
         const space_node = document.querySelector("#SpacePanel");
         if (!space_node) {
@@ -73,6 +77,7 @@
         });
     };
 
+    // Функция для создания виджета "Candles"
     const createCandlesWidget = () => {
         const widget = createCustomWidget();
         if (!widget) {
@@ -87,4 +92,48 @@
 
         console.log(`Создан виджет с ID: ${widgetId}`);
     };
+
+    // Задержка в 10 секунд перед выполнением скрипта
+    setTimeout(function () {
+        // Проверяем наличие объекта albalab_widgets в localStorage
+        let widgets = localStorage.getItem('albalab_widgets');
+        if (widgets) {
+            try {
+                // Преобразуем строку в массив
+                widgets = JSON.parse(widgets);
+
+                // Проходим по каждому значению в массиве
+                widgets.forEach(widgetId => {
+                    // Ищем блоки с атрибутом data-widget-id, равным текущему значению
+                    let elements = document.querySelectorAll(`[data-widget-id="${widgetId}"]`);
+
+                    elements.forEach(element => {
+                        // Ищем внутренний блок с классом widget внутри элемента
+                        let widgetBlock = element.querySelector('.widget');
+                        if (widgetBlock) {
+                            // Вставляем iframe
+                            widgetBlock.innerHTML = `<iframe src="https://trade-6rl.pages.dev/#/alorcandles" style="width: 100%; height: 100%;" class="custom-iframe"></iframe>`;
+
+                            // Находим iframe внутри текущего widgetBlock
+                            let iframe = widgetBlock.querySelector('iframe.custom-iframe');
+
+                            if (iframe) {
+                                // Функция для отправки сообщения в iframe
+                                function sendMessage() {
+                                    const message = { time: new Date().toISOString(), data: "Your message here" }; // Ваши данные
+                                    iframe.contentWindow.postMessage(message, '*'); // Отправка сообщения в iframe
+                                }
+
+                                // Устанавливаем интервал для отправки сообщения каждые 10 миллисекунд (может быть 5000 для 5 секунд)
+                                setInterval(sendMessage, 100); // 5000 миллисекунд = 5 секунд
+                            }
+                        }
+                    });
+                });
+            } catch (e) {
+                console.error('Ошибка при обработке albalab_widgets:', e);
+            }
+        }
+    }, 10000); // 10000 миллисекунд = 10 секунд
+
 })();
