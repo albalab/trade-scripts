@@ -9,7 +9,7 @@
             iframeUrl: 'https://trade-6rl.pages.dev/#/alorcandles' // URL для iframe
         },
         {
-            widgetName: 'Another Widget', // Второй виджет
+            widgetName: 'TCS Candles', // Второй виджет
             localStorageKey: 'another_widget_storage', // Ключ для второго виджета
             iframeUrl: 'https://trade-6rl.pages.dev/#/tcscandles' // URL для второго виджета
         }
