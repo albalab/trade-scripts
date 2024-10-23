@@ -12,6 +12,12 @@
             widgetName: 'TCS Candles', // Второй виджет
             localStorageKey: 'another_widget_storage', // Ключ для второго виджета
             iframeUrl: 'https://trade-6rl.pages.dev/#/tcscandles' // URL для второго виджета
+        },
+        ,
+        {
+            widgetName: 'TCS Trades', // Второй виджет
+            localStorageKey: 'trades_widget_storage', // Ключ для второго виджета
+            iframeUrl: 'https://trade-6rl.pages.dev/#/tcstrades' // URL для второго виджета
         }
         // Можно добавить больше виджетов в этом формате
     ];
