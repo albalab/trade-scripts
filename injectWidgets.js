@@ -9,6 +9,11 @@
             iframeUrl: 'https://trade-6rl.pages.dev/#/alorcandles' // URL для iframe
         },
         {
+            widgetName: 'Alor Trades', // Название виджета
+            localStorageKey: 'albalab_alor_trades', // Ключ для хранения в localStorage
+            iframeUrl: 'https://trade-6rl.pages.dev/#/alortrades' // URL для iframe
+        },
+        {
             widgetName: 'TCS Candles', // Второй виджет
             localStorageKey: 'another_widget_storage', // Ключ для второго виджета
             iframeUrl: 'https://trade-6rl.pages.dev/#/tcscandles' // URL для второго виджета
