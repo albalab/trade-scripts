@@ -1,13 +1,8 @@
-(function () {
+(function (global) {
     'use strict';
 
-    // Используем глобальное хранилище
-    const storage = window.myGlobalStorage;
-
-    // Проверка и инициализация объекта widgetsStorage
-    if (!storage.widgetsStorage) {
-        storage.widgetsStorage = {};
-    }
+    // Проверка и инициализация widgetsStorage
+    global.widgetsStorage = global.widgetsStorage || {};
 
 
     const enabledWidgets = [
@@ -169,7 +164,7 @@
     }
 
     function saveWidgetToStorage(widgetId, widgetData) {
-        storage.widgetsStorage[widgetId] = widgetData;
+        global.widgetsStorage[widgetId] = widgetData;
         //console.log('Updated global storage:', unsafeWindow.widgetsStorage);
     }
 
