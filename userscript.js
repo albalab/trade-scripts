@@ -6,6 +6,7 @@
 // @author       Your Name
 // @match        https://www.tbank.ru/terminal/
 
+// @grant        unsafeWindow
 // @grant        GM_xmlhttpRequest
 // @connect      bitbucket.org
 
@@ -15,6 +16,12 @@
     const scriptsToLoad = [
         'https://bitbucket.org/albalab/trade-scripts/raw/main/tickersGroups.js',
         'https://bitbucket.org/albalab/trade-scripts/raw/main/injectWidgets.js',
+
+        'https://bitbucket.org/albalab/trade-scripts/raw/main/liveWidgetsStorage.js',
+        'https://bitbucket.org/albalab/trade-scripts/raw/main/widgetsStorageView.js',
+
+        'https://bitbucket.org/albalab/trade-scripts/raw/main/myButtons.js',
+
     ];
 
     scriptsToLoad.forEach(function(scriptUrl) {

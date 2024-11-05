@@ -5,7 +5,6 @@
         window.widgetsStorage = {};
     }
 
-
     const enabledWidgets = [
         'TRADES_WIDGET',
         'ORDERBOOK_WIDGET',
@@ -262,8 +261,6 @@
     // Функция для добавления элемента в корень виджета
     function addElementToWidget(widget) {
 
-        console.log('ADD ELEMENT TO WIDGET')
-
         if(!widget) return;
         const rootElement = widget.querySelector('.react-draggable');
         if (rootElement) {
@@ -306,7 +303,6 @@
         return widgetsFiltered;
     }
 
-    // Запускаем через 10 секунд
     setTimeout(() => {
         const widgets = getWidgets();
         widgets.forEach(widget => {
