@@ -1,8 +1,9 @@
-(function (global) {
+(function () {
     'use strict';
 
-    // Проверка и инициализация widgetsStorage
-    global.widgetsStorage = global?.widgetsStorage || {};
+    if (!unsafeWindow.widgetsStorage) {
+        unsafeWindow.widgetsStorage = {};
+    }
 
 
     const enabledWidgets = [
@@ -164,7 +165,7 @@
     }
 
     function saveWidgetToStorage(widgetId, widgetData) {
-        global.widgetsStorage[widgetId] = widgetData;
+        unsafeWindow.widgetsStorage[widgetId] = widgetData;
         //console.log('Updated global storage:', unsafeWindow.widgetsStorage);
     }
 
@@ -309,5 +310,4 @@
         });
     }, 10000);
 
-
-})(window.widgetsStorage);
+})();
