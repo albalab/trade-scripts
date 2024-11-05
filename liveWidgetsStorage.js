@@ -1,6 +1,8 @@
 (function () {
     'use strict';
 
+    if (!unsafeWindow) return
+
     if (!unsafeWindow.widgetsStorage) {
         unsafeWindow.widgetsStorage = {};
     }
