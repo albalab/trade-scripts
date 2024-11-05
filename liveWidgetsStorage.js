@@ -2,7 +2,7 @@
     'use strict';
 
     // Проверка и инициализация widgetsStorage
-    global.widgetsStorage = global.widgetsStorage || {};
+    global.widgetsStorage = global?.widgetsStorage || {};
 
 
     const enabledWidgets = [
