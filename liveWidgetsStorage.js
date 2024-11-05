@@ -261,6 +261,9 @@
 
     // Функция для добавления элемента в корень виджета
     function addElementToWidget(widget) {
+
+        console.log('ADD ELEMENT TO WIDGET')
+
         if(!widget) return;
         const rootElement = widget.querySelector('.react-draggable');
         if (rootElement) {
