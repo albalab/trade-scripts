@@ -1,10 +1,8 @@
 (function () {
     'use strict';
 
-    if (!unsafeWindow) return
-
-    if (!unsafeWindow.widgetsStorage) {
-        unsafeWindow.widgetsStorage = {};
+    if (!window.widgetsStorage) {
+        window.widgetsStorage = {};
     }
 
 
@@ -167,7 +165,7 @@
     }
 
     function saveWidgetToStorage(widgetId, widgetData) {
-        unsafeWindow.widgetsStorage[widgetId] = widgetData;
+        window.widgetsStorage[widgetId] = widgetData;
         //console.log('Updated global storage:', unsafeWindow.widgetsStorage);
     }
 

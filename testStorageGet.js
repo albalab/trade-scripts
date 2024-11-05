@@ -1,8 +1,8 @@
 (function() {
 
     setInterval(() => {
-        if(window?.albalabStorage) {
-            console.log('ALBALAB STORAGE', window.albalabStorage);
+        if(window?.widgetsStorage) {
+            console.log('ALBALAB WIDGETS STORAGE', window.widgetsStorage);
         }
     }, 1000)
 
