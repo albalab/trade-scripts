@@ -292,6 +292,7 @@
     }
 
     function getWidgets(){
+        console.log('Get widgets');
         const widgetsAll = document.querySelectorAll('div[data-widget-id]');
         const widgetsFiltered = [];
         widgetsAll.forEach(widget => {
