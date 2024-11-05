@@ -310,4 +310,4 @@
     }, 10000);
 
 
-})();
+})(window.widgetsStorage);
