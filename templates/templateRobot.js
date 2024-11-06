@@ -16,7 +16,7 @@
         // Проверяем доступность window.myStorage и window.myStorage.alorTrade
         if (window.myStorage && window.myStorage.alorTrade) {
             // Как только объект становится доступен, устанавливаем прокси
-            window.myStorage.alorTrade = new Proxy(window.myStorage.alorTrade, {
+            window.myStorage = new Proxy(window.myStorage, {
                 set(target, property, value) {
                     // Устанавливаем новое значение свойства
                     target[property] = value;
