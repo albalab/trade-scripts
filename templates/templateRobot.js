@@ -22,7 +22,7 @@
                     target[property] = value;
 
                     // Выводим обновленный объект в консоль
-                    console.log('alorTrade обновлен:', target);
+                    //console.log('alorTrade обновлен:', target);
 
                     // Сообщаем об успешной записи значения
                     return true;
