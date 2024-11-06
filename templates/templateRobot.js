@@ -8,7 +8,9 @@
     if (!allowedTickers.includes(triggerTicker)) return;
 
 
-
+    setInterval(() => {
+        console.log(window.alorTrade);
+    }, 3000);
 
     // Создаем прокси для window.alorTrade
     window.alorTrade = new Proxy(window.alorTrade || {}, {
