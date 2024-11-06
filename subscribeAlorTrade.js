@@ -4,12 +4,14 @@
     // Соединение с WebSocket сервером
     const socket = new WebSocket('ws://localhost:4444'); // Замените URL на ваш сервер
 
+    window.myStorage = window.myStorage || {};
+
     // Обработка получения сообщений от WebSocket сервера
     socket.onmessage = (event) => {
 
         const trade = JSON.parse(event.data); // Парсим данные
 
-        window.alorTrade = trade;
+        window.myStorage.alorTrade = trade;
 
         //console.log('Получены данные с сервера:', trade); // Выводим данные в консоль
 

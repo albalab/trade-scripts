@@ -13,10 +13,10 @@
     }, 3000);*/
 
     const checkAlorTradeInterval = setInterval(() => {
-        // Проверяем доступность window.alorTrade
-        if (window.alorTrade) {
+        // Проверяем доступность window.myStorage и window.myStorage.alorTrade
+        if (window.myStorage && window.myStorage.alorTrade) {
             // Как только объект становится доступен, устанавливаем прокси
-            window.alorTrade = new Proxy(window.alorTrade, {
+            window.myStorage.alorTrade = new Proxy(window.myStorage.alorTrade, {
                 set(target, property, value) {
                     // Устанавливаем новое значение свойства
                     target[property] = value;
@@ -31,9 +31,18 @@
 
             // Очищаем таймер, так как прокси уже установлен
             clearInterval(checkAlorTradeInterval);
-            console.log("Прокси для alorTrade установлен.");
+            console.log("Прокси для myStorage.alorTrade установлен.");
+        } else if (!window.myStorage) {
+            // Если myStorage еще не существует, инициализируем его
+            window.myStorage = {};
+            console.log("Создан window.myStorage.");
+        } else if (!window.myStorage.alorTrade) {
+            // Если alorTrade еще не существует в myStorage, инициализируем его как пустой объект
+            window.myStorage.alorTrade = {};
+            console.log("Создан window.myStorage.alorTrade.");
         }
-    }, 1000); // Проверяем каждые 100 миллисекунд
+    }, 1000); // Проверяем каждую секунду
+
 
 
 
