@@ -1,16 +1,13 @@
 (function () {
     'use strict';
 
-setInterval(() => {
+    const triggerTicker = "CHMF";
 
-    if(window.widgetsStorage){
-        console.log("HELLO FROM ROBOT");
-    }
+    const allowedTickers = ['SBER', 'LKOH', 'NVTK', 'CHMF'];
 
-    if(window.createLimitOrder) {
-        window.createLimitOrder();
-    }
+    if (!allowedTickers.includes(triggerTicker)) return;
 
-}, 5000);
+
+    //window.sendLimitOrder(1, 1150, 'CHMF', 'MOEX', 'buy', 'D88141');
 
 })();
