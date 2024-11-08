@@ -1,4 +1,5 @@
-const initWidgets = async () => {
+// initWidgets.js
+export const initWidgets = async () => {
     const { addCustomMenuItem } = await import('https://bitbucket.org/albalab/trade-scripts/raw/main/menuManager.js');
     const { createCandlesWidget } = await import('https://bitbucket.org/albalab/trade-scripts/raw/main/widgetManager.js');
 
@@ -21,7 +22,7 @@ const initWidgets = async () => {
     ];
 
     const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
+        mutations.forEach(() => {
             widgetsConfig.forEach(widgetConfig => {
                 addCustomMenuItem(widgetConfig, createCandlesWidget);
             });
@@ -30,4 +31,7 @@ const initWidgets = async () => {
     observer.observe(document.body, { childList: true, subtree: true });
 };
 
-initWidgets();
+// Асинхронный вызов initWidgets с ожиданием
+(async () => {
+    await initWidgets();
+})();
