@@ -1,6 +1,6 @@
 const initWidgets = async () => {
-    const { addCustomMenuItem } = await import('./menuManager.js');
-    const { createCandlesWidget } = await import('./widgetManager.js');
+    const { addCustomMenuItem } = await import('https://bitbucket.org/albalab/trade-scripts/raw/main/menuManager.js');
+    const { createCandlesWidget } = await import('https://bitbucket.org/albalab/trade-scripts/raw/main/widgetManager.js');
 
     const widgetsConfig = [
         {
