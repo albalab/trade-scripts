@@ -1,4 +1,4 @@
-(function() {
+
     'use strict';
 
     const iframe = document.createElement('iframe');
@@ -26,4 +26,4 @@
     // Устанавливаем интервал для отправки сообщения каждые 5 секунд
     setInterval(sendMessage, 10);
 
-})();
+

@@ -1,4 +1,4 @@
-(function () {
+
     'use strict';
 
     if (!window.widgetsStorage) {
@@ -310,4 +310,3 @@
         });
     }, 10000);
 
-})();

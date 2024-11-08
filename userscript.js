@@ -20,7 +20,16 @@
         'https://bitbucket.org/albalab/trade-scripts/raw/main/liveWidgetsStorage.js',
         'https://bitbucket.org/albalab/trade-scripts/raw/main/widgetsStorageView.js',
 
-        'https://bitbucket.org/albalab/trade-scripts/raw/main/myButtons.js',
+        //'https://bitbucket.org/albalab/trade-scripts/raw/main/myButtons.js',
+
+        'https://bitbucket.org/albalab/trade-scripts/raw/main/templates/initLimitOrder.js',
+        //'https://bitbucket.org/albalab/trade-scripts/raw/main/templates/createLimitOrder.js',
+
+        'https://bitbucket.org/albalab/trade-scripts/raw/main/templates/templateRobot.js',
+
+        //'https://bitbucket.org/albalab/trade-scripts/raw/main/templates/templateWS.js',
+
+        'https://bitbucket.org/albalab/trade-scripts/raw/main/subscribeAlorTrade.js',
 
     ];
 
@@ -31,6 +40,7 @@
             onload: function(response) {
                 const scriptContent = response.responseText;
                 const script = document.createElement('script');
+                script.type = 'module'; // Устанавливаем type="module" для поддержки модулей
                 script.textContent = scriptContent;
                 document.head.appendChild(script);
             },

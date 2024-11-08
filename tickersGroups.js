@@ -1,4 +1,4 @@
-(function () {
+
     'use strict';
 
     // Load groups from localStorage or use default if not set
@@ -299,4 +299,3 @@
     // Check and add the custom menu item on initial load
     addCustomMenuItem();
 
-})();

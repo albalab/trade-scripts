@@ -1,4 +1,4 @@
-(function () {
+
     'use strict';
 
     const SCANER_ICON = 'O'; // Замените на код вашей иконки
@@ -121,4 +121,3 @@
     // Вызывайте эти методы из консоли:
     // addMenuItem();
     // createCandlesWidget();
-})();
