@@ -1,4 +1,4 @@
-(function () {
+
     'use strict';
 
     // Create modal window
@@ -53,4 +53,3 @@
         }
     }, 15000); // 15000 milliseconds = 15 seconds
 
-})();

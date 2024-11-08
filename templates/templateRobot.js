@@ -1,4 +1,4 @@
-(function () {
+
     'use strict';
 
     const triggerTicker = "CHMF";
@@ -48,4 +48,3 @@
 
     //window.sendLimitOrder(1, 1150, 'CHMF', 'MOEX', 'buy', 'D88141');
 
-})();

@@ -1,4 +1,4 @@
-(function () {
+
     'use strict';
 
     // Массив с настройками для каждого виджета
@@ -13,7 +13,14 @@
             localStorageKey: 'albalab_alor_trades', // Ключ для хранения в localStorage
             iframeUrl: 'https://trade-6rl.pages.dev/#/alortrades' // URL для iframe
         },
+
         {
+            widgetName: 'Robot1', // Название виджета
+            localStorageKey: 'albalab_robot_1', // Ключ для хранения в localStorage
+            iframeUrl: 'https://trade-6rl.pages.dev/#/alortrades' // URL для iframe
+        },
+
+        /*{
             widgetName: 'TCS Candles', // Второй виджет
             localStorageKey: 'another_widget_storage', // Ключ для второго виджета
             iframeUrl: 'https://trade-6rl.pages.dev/#/tcscandles' // URL для второго виджета
@@ -22,7 +29,7 @@
             widgetName: 'TCS Trades', // Второй виджет
             localStorageKey: 'trades_widget_storage', // Ключ для второго виджета
             iframeUrl: 'https://trade-6rl.pages.dev/#/tcstrades' // URL для второго виджета
-        }
+        }*/
         // Можно добавить больше виджетов в этом формате
     ];
 
@@ -151,4 +158,4 @@
             }
         });
     }, 10000); // Задержка в 10 секунд перед выполнением скрипта
-})();
+

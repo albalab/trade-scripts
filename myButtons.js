@@ -1,4 +1,3 @@
-(function() {
 
 
     // Создаем контейнер для кнопок
@@ -116,4 +115,4 @@
     container.appendChild(bestSellButton);
     document.body.appendChild(container);
 
-})();
+

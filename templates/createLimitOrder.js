@@ -1,4 +1,4 @@
-(function () {
+
     'use strict';
 
     setTimeout(() => {
@@ -9,4 +9,3 @@
 
     }, 5000);
 
-})();

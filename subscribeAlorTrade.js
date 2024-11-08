@@ -1,4 +1,4 @@
-(function() {
+
     'use strict';
 
     // Соединение с WebSocket сервером
@@ -31,4 +31,4 @@
     socket.onclose = () => {
         console.log('Соединение WebSocket закрыто');
     };
-})();
+

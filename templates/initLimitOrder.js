@@ -1,4 +1,4 @@
-(function() {
+
     'use strict';
 
     window.sendLimitOrder = async function(volume, price, ticker, exchange, side, portfolio) {
@@ -28,5 +28,5 @@
             console.error("Ошибка при отправке лимитного ордера:", error.message);
         }
     };
-    
-})();
+
+
